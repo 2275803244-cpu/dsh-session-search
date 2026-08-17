@@ -1,0 +1,38 @@
+{
+  "name": "dsh-client-ui-session-search",
+  "version": "0.1.0",
+  "description": "In-session full-text search for the DeepSeek Harness web GUI: kind filters, multi-term AND matching, keyboard navigation, copy-to-clipboard, and jump-to-message.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "client-plugin",
+    "web",
+    "search",
+    "conversation"
+  ],
+  "author": "2275803244-cpu <2275803244@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2275803244-cpu/dsh-session-search.git"
+  },
+  "homepage": "https://github.com/2275803244-cpu/dsh-session-search",
+  "bugs": {
+    "url": "https://github.com/2275803244-cpu/dsh-session-search/issues"
+  },
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "dsh": {
+    "client": {
+      "platform": "web"
+    }
+  }
+}

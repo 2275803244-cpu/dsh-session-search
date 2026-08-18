@@ -4,7 +4,7 @@ DeepSeek Harness Web GUI 的**会话内全文搜索**客户端插件。
 
 在会话标题栏加一个 🔍 按钮：搜索当前会话全部节点的文本，点结果直接滚动跳转并高亮。
 
-![feature overview](https://img.shields.io/badge/dsh-client--plugin-web-3964fe)
+![CI](https://github.com/2275803244-cpu/dsh-session-search/actions/workflows/ci.yml/badge.svg)
 
 ## 功能
 

@@ -1,0 +1,5 @@
+# dsh-client-ui-session-search profile bundle patch:
+# inserts the plugin row into the loader tree when installed as a profile bundle.
+- insert:
+    - id: ui-session-search
+      name: 'dsh-client-ui-session-search'

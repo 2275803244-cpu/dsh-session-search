@@ -1,6 +1,6 @@
 {
   "name": "dsh-client-ui-session-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "In-session full-text search for the DeepSeek Harness web GUI: kind filters, multi-term AND matching, keyboard navigation, copy-to-clipboard, and jump-to-message.",
   "keywords": [
     "dsh",
@@ -28,11 +28,17 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "lib"
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "client": {
       "platform": "web"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
     }
   }
 }

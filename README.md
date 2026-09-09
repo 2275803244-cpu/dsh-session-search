@@ -44,6 +44,13 @@ pnpm --dir "$HOME\.dsh\profiles\web" remove dsh-client-ui-session-search
 # 删掉 cordis.patch.yml 的 ui-session-search 行，重启
 ```
 
+## 贡献
+
+欢迎提交 PR！请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+- 本仓库目前没有自动化测试，欢迎补充（可参考 `dsh-model-switcher` 的 `test/client.test.cjs`）
+- 提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/)
+
 ## 参考
 
 - 槽位契约：`dsh-client-ui-conversation/lib/types/client/contract/slots.d.ts`

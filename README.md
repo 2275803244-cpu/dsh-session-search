@@ -23,11 +23,28 @@
 
 ## 安装 / 更新
 
+本插件同时支持 **CLI / Web 版**（`web` profile）与 **桌面版**（`desktop` profile）。
+
+推荐用 DSH 自带 CLI 安装：`dsh plugin add` 会把依赖**和** `dsh.profile.bundles` 一起写进该 profile 的 `package.json`，**不需要**再手工改 `cordis.patch.yml`。
+
+```powershell
+# CLI / Web 版
+dsh plugin --profile web add github:2275803244-cpu/dsh-session-search
+
+# 桌面版（桌面应用自带 CLI，位于 <安装目录>\resources\runtime\cli\bin\dsh.cmd）
+& "<桌面版安装目录>\resources\runtime\cli\bin\dsh.cmd" plugin --profile desktop add github:2275803244-cpu/dsh-session-search
+```
+
+装完重启对应程序（**bundle rev 在启动时哈希进 boot 图，改了必须重启**）。
+
+<details>
+<summary>手工安装（旧方式，仅 web profile）</summary>
+
 ```powershell
 pnpm --dir "$HOME\.dsh\profiles\web" add D:\deepseekherness\session-search-plugin
 ```
 
-`cordis.patch.yml` 需包含（已配好）：
+`cordis.patch.yml` 需包含：
 
 ```yaml
 - insert:
@@ -35,7 +52,23 @@ pnpm --dir "$HOME\.dsh\profiles\web" add D:\deepseekherness\session-search-plugi
       name: 'dsh-client-ui-session-search'
 ```
 
-**每次修改 `lib/client.js` 后需要重启 `dsh web` 才生效**（bundle rev 在启动时哈希进 boot 图）。
+重启 `dsh web`。
+
+</details>
+
+## 0.1.2 更新（桌面版支持）
+
+DSH 桌面版（`@deepseek-ai/dsh-desktop-runtime` **0.2.0-rc.2**）启用了独立的 `desktop` profile，插件默认不在其中。本版本确认插件在桌面版下**无需改动代码**即可工作（纯浏览器侧 bundle，只依赖 `react` / `react/jsx-runtime`，不耦合 DSH 内部包）：
+
+| 核对项 | 桌面版 0.2.0-rc.2 实测结果 |
+| --- | --- |
+| 槽位 `conversation.session.header.actions` | ✅ 仍由 `dsh-client-ui-conversation` 渲染 |
+| 服务 `sessions`（`ctx.get("sessions")`） | ✅ 仍在提供 |
+| `sessions.binding(sessionId)` | ✅ 签名一致（`binding(id: SessionId): SessionBinding`） |
+| 数据面 `useSession` + `ConversationSnapshot.chat` | ✅ 仍在框架 session kit 中 |
+| 组合树 | ✅ 装入 `desktop` profile 后可见 `ui-session-search` 行，无报错 |
+
+> 校验方式：桌面版核心代码打包在 `app.asar` 内，直接解包比对运行时实际代码；`desktop` profile 只能由桌面应用启动，组合树校验用一份副本 profile 跑 `--dump-config`。
 
 ## 卸载
 
